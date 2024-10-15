@@ -1,0 +1,109 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/*Reset margins and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*Make sure the bodysuit takes up 100% width */
+html,
+body {
+  width: 100%;
+  overflow-x: hidden; /*Avoid horizontal scrolling */
+}
+
+/*Style for the background */
+.background-image {
+  width: 100%; /*Make sure it fills the entire width of the window */
+  height: 100%; /*Ensures that it occupies the entire height of the window */
+
+  background-size: cover; /*Fits the image to the size of the container */
+  background-position: center; /*Center the image */
+}
+.h-cols {
+  max-height: 80vh; /*Limits the maximum height */
+  overflow-y: self; /*Enable vertical scrolling */
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.background-image {
+  background-image: url("./Images/fondo.jpg");
+  background-size: cover;
+
+  height: 100vh; /*Ajusta la altura según sea necesario */
+}
+
+/*AuthContainer*/
+
+@media (max-width: 768px) {
+  .auth-cols {
+    width: 95%;
+  }
+}
+
+.loginLabelTxt {
+  text-align: start;
+}
+
+/*menu*/
+
+.blue-custom-color {
+  background-color: rgb(13, 110, 253);
+}
+
+
+.grey-color {
+  background-color: rgb(217, 217, 217);
+}
+
+.h-columns {
+  height: 100vh;
+}
+
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+/*watchNotesAndTasks*/
+.boxx {
+  height: 15rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.boxx .col-12 p {
+  margin: 0;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+@media (max-width: 575.98px) {
+
+  .h-columns {
+    height: auto !important;
+    padding: 10px 0;
+  }
+  .boxx {
+    height: 15rem;
+  }
+
+  .hide-colum {
+    content-visibility: hidden;
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}
