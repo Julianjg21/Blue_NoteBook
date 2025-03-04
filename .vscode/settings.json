@@ -12,5 +12,6 @@
       "path": "blue_notebook\\client\\src\\components\\"
     }
   ],
-  "commentTranslate.hover.enabled": true
+  "commentTranslate.hover.enabled": true,
+  "commentTranslate.targetLanguage": "en"
 }
