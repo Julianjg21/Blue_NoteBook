@@ -5,6 +5,7 @@ import LoginForm from "../components/login/LoginForm";
 import RegisterForm from "../components/login/RegisterForm";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import ResetPassword from "../components/login/resetPassword/ResetPassword";
+import bluenotebook3 from "../assets/bluenotebook3.jpg"
 function LoginPage() {
   const { component } = useContext(RenderContext);
 
@@ -24,10 +25,12 @@ function LoginPage() {
 
   return (
     <div className="background-image align-content-center overflow-hidden">
+
+      <img src={bluenotebook3} alt="bluenotebook " className=" bluenotebook-jpg" />
       <div className="row ">
-        <div className="col-1 col-md-3"></div>
+        <div className="col-1 col-md-1 col-lg-3"></div>
         {/*The received component is rendered in the global state */}
-        <div className="col-10 col-md-6 mb-md-5 ">
+        <div className="col-10 col-md-10 col-lg-6  ">
           <Routes>
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/ResetPassword" element={<ResetPassword />} />
@@ -35,7 +38,7 @@ function LoginPage() {
             <Route path="/" element={<AuthContainer />} />
           </Routes>
         </div>
-        <div className="col-1 col-3"></div>
+        <div className="col-1 cold-md-1 col-lg-3"></div>
       </div>
     </div>
   );
