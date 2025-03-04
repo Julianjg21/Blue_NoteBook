@@ -22,7 +22,7 @@ function TextEdit() {
   };
 
   return (
-    <div className="text-editor">
+    <div className="text-editor  container-fluid bg-light ">
       {/* Custom alert component */}
       <CustomAlert
         title={alert.title} //Pass the alert title
@@ -31,37 +31,42 @@ function TextEdit() {
         show={alert.show} //Show or not the alert
         onClose={handleCloseAlert} //Function to close the alert
       />
-
-      <div className="mb-1">
-        <label htmlFor="textEditTitle">Título:</label>
-        <input
-          id="textEditTitle"
-          type="text"
-          placeholder="Agrega un título a tu nota"
-          className="mx-5 w-75 border-0 mt-2 mb-2"
-          onChange={(event) => setTitle(event.target.value)}
-          value={title}
-          required
-        />
-        {/*Button to save the note */}
-        <button
-          title="save note"
-          className="btn btn-success"
-          onClick={handleSendData}
-        >
-          Guardar
-        </button>
+      <div className="row w-100  ">
+        <div className="col-md-10 col-11">
+          <label htmlFor="textEditTitle">Título:</label>
+          <input
+            id="textEditTitle"
+            type="text"
+            placeholder="Agrega un título a tu nota"
+            className=" mx-1 mx-md-1   mx-lg-5 w-75 border-0 mt-2 mb-2 "
+            onChange={(event) => setTitle(event.target.value)}
+            value={title}
+            required
+          />
+        </div>
+        <div className="col-1 col-md-2">
+          {/*Button to save the note */}
+          <button
+            title="save note"
+            className="btn btn-success float-end"
+            onClick={handleSendData}
+          >
+            Guardar
+          </button>
+        </div>
       </div>
 
-      {/*Quill text editor for note description */}
-      <ReactQuill
-        theme="snow" //Editor theme
-        value={description} //Editor content value
-        onChange={(content) => setDescription(content)} //Update the description in the state
-        modules={TextEdit.modules} //Editor configuration modules
-        formats={TextEdit.formats} //Formats allowed in the editor
-        required
-      />
+      <div className="container">
+        {/*Quill text editor for note description */}
+        <ReactQuill
+          theme="snow" //Editor theme
+          value={description} //Editor content value
+          onChange={(content) => setDescription(content)} //Update the description in the state
+          modules={TextEdit.modules} //Editor configuration modules
+          formats={TextEdit.formats} //Formats allowed in the editor
+          required
+        />
+      </div>
     </div>
   );
 }
