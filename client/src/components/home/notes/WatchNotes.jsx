@@ -22,18 +22,16 @@ function WatchNotes() {
     id: null,
   });
 
-
-
   // State to toggle between viewing all notes and editing a single note
   const [showSaveData, setShowSaveData] = useState(true);
 
   // Fetch notes from the server when the component mounts
   useEffect(() => {
     refreshNotes();
-  }, [ refreshNotes]); // Dependency array to re-fetch notes when they change
+  }, [refreshNotes]); // Dependency array to re-fetch notes when they change
 
   // Handle editing a note from the home page
-useEffect(() => {
+  useEffect(() => {
     if (state.editNoteState.editNoteFromHome) {
       setNoteData({
         description: state.editNoteState.editDescription.description,
@@ -63,78 +61,89 @@ useEffect(() => {
   };
 
   return (
-    <div className="row grey-color">
-      {/* Sidebar with note list */}
-      <div
-        className="col-0 col-md-2 d-none d-md-block border border-2 h-columns"
-        style={{ maxHeight: "960px", overflowY: "auto" }}
-      >
-        <h1>Notas:</h1>
-        <Button title="new note"className="w-100" onClick={() => setShowSaveData(true)}>
-          Nueva Nota
-        </Button>
-        {getNotes.length > 0 ? (
-          getNotes.map((note) => (
-            <div key={note.id} className="list-group">
-              <button
-                title="show note"
-                type="button"
-                className="btn btn-outline-secondary btn-light mt-2 text-truncate"
-                onClick={() => handleShowNote(note)}
-                aria-current="true"
-              >
-                {note.title}
-              </button>
-            </div>
-          ))
-        ) : (
-          <p>No hay notas disponibles.</p>
-        )}
-      </div>
-
-      {/* Main content area */}
-      <div className="col-1 d-block d-md-none"></div>
-      <div className="col-10 col-md-10 bg-light">
-        {showSaveData ? (
-          <TextEdit  />
-        ) : (
-          <div className="text-editor">
-            {/*Customize alert according to the data sent by the server*/}
-            <CustomAlert
-              title={alert.title}
-              message={alert.message}
-              variant={alert.variant}
-              show={alert.show}
-              onClose={handleCloseAlert}
-            />
-            <div className="mb-1">
-              <label className="" htmlFor="noteDataTitle">Título:</label>
-                <input
-                id="noteDataTitle"
-                type="text"
-                placeholder="Agrega un título a tu nota"
-                className="mx-5 w-75 border-0 mt-2 mb-2 "
-                value={noteData.title}
-                onChange={(e) =>
-                  setNoteData({ ...noteData, title: e.target.value })
-                }
-              />
-              <button  title="Edit Note"className="btn btn-warning" onClick={handleUpdateData}>
-                Editar
-              </button>
-            </div>
-
-            <ReactQuill
-              theme="snow"
-              value={noteData.description}
-              onChange={(content) =>
-                setNoteData({ ...noteData, description: content })
-              }
-              modules={WatchNotes.modules}
-              formats={WatchNotes.formats}
-            />
+    <div className="container-fluid h-100 bg-light w-100">
+      <div className="row  grey-color  bg-light">
+        {/* Sidebar with note list */}
+        <div className="col-12 col-md-2  watch-notes-sidebar p-4 p-md-2 border border-bottom-4 rounded ">
+          <h1>Notes:</h1>
+          <Button
+            title="new note"
+            className="w-100"
+            onClick={() => setShowSaveData(true)}
+          >
+            Nueva Nota
+          </Button>
+          <div className="">
+            {getNotes.length > 0 ? (
+              getNotes.map((note) => (
+                <div key={note.id} className="list-group">
+                  <button
+                    title="show note"
+                    type="button"
+                    className="btn btn-outline-secondary btn-light mt-2 text-truncate"
+                    onClick={() => handleShowNote(note)}
+                    aria-current="true"
+                  >
+                    {note.title}
+                  </button>
+                </div>
+              ))
+            ) : (
+              <p>No hay notas disponibles.</p>
+            )}
           </div>
-        )}
+        </div>
+
+        {/* Main content area */}
+
+        <div className="col-12 col-md-10  bg-light h-100 p-4 p-md-4">
+          {showSaveData ? (
+            <TextEdit />
+          ) : (
+            <div className="text-editor ">
+              {/*Customize alert according to the data sent by the server*/}
+              <CustomAlert
+                title={alert.title}
+                message={alert.message}
+                variant={alert.variant}
+                show={alert.show}
+                onClose={handleCloseAlert}
+              />
+              <div className="mb-1 ">
+                <label className="" htmlFor="noteDataTitle">
+                  Título:
+                </label>
+                <input
+                  id="noteDataTitle"
+                  type="text"
+                  placeholder="Agrega un título a tu nota"
+                  className="mx-5 w-75 border-0 mt-2 mb-2 "
+                  value={noteData.title}
+                  onChange={(e) =>
+                    setNoteData({ ...noteData, title: e.target.value })
+                  }
+                />
+                <button
+                  title="Edit Note"
+                  className="btn btn-warning"
+                  onClick={handleUpdateData}
+                >
+                  Editar
+                </button>
+              </div>
+
+              <ReactQuill
+                theme="snow"
+                value={noteData.description}
+                onChange={(content) =>
+                  setNoteData({ ...noteData, description: content })
+                }
+                modules={WatchNotes.modules}
+                formats={WatchNotes.formats}
+              />
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

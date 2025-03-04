@@ -11,8 +11,8 @@ import FetchDeleteNotes from "../../hooks/apis/notesFetch/FetchDeleteNotes.mjs";
 import FetchGetTasks from "../../hooks/apis/tasksFetch/FetchGetTasks.mjs";
 import FetchGetNotes from "../../hooks/apis/notesFetch/FetchGetNotes.mjs";
 function WatchTasksAndNotes() {
-  const { getNotes, refreshNotes } = FetchGetNotes();//We use the hook to obtain the notes
-  const { alert, deleteNote, handleCloseAlert } = FetchDeleteNotes();//We use the hook to obtain the tasks
+  const { getNotes, refreshNotes } = FetchGetNotes(); //We use the hook to obtain the notes
+  const { alert, deleteNote, handleCloseAlert } = FetchDeleteNotes(); //We use the hook to obtain the tasks
   const { tasksList, refreshTasks } = FetchGetTasks();
   // State to control the visibility of the note modal
   const [showNote, setShowNote] = useState(false);
@@ -53,7 +53,7 @@ function WatchTasksAndNotes() {
   useEffect(() => {
     refreshNotes();
     refreshTasks();
-  }, [ refreshTasks, refreshNotes]); // Dependency array to re-fetch notes when they change
+  }, [refreshTasks, refreshNotes]); // Dependency array to re-fetch notes when they change
 
   // Function to handle note editing
   const handleEditeNote = () => {
@@ -77,16 +77,17 @@ function WatchTasksAndNotes() {
   };
 
   return (
-    <div className="container-fluid">
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
+    <div className="container-fluid ">
+      <div className="container ">
+        <div className="row " >
+          <div className="col-12" >
             <Tabs
               defaultActiveKey="profile"
               id="uncontrolled-tab-example"
-              className="mb-3 grey-color border border-0"
+              className="mb-3  border border-0"
+
             >
-              <Tab eventKey="home" title="Notes">
+              <Tab eventKey="home" title="Notes" className="" >
                 <CustomAlert
                   title={alert.title} //Pass the title
                   message={alert.message}
@@ -94,16 +95,16 @@ function WatchTasksAndNotes() {
                   show={alert.show}
                   onClose={handleCloseAlert}
                 />
-                <h2>Notas</h2>
-                <div className="row">
+                <h2>Notes</h2>
+                <div className="row ">
                   <div className="col-12 ">
                     <div className="container">
-                      <div className="row">
+                      <div className="row ">
                         {getNotes.length > 0 ? (
                           getNotes.map((note, index) => (
                             <React.Fragment key={index}>
                               <div
-                                className="col-4 col-sm-2 shadow pointer mt-2 boxx bg-light rounded"
+                                className="col-4 col-sm-2 shadow pointer mt-2 boxx bg-light rounded bg-danger"
                                 onClick={() => handleShowNote(note)}
                               >
                                 <div className="row">
