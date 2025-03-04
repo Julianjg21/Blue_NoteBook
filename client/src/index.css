@@ -37,19 +37,23 @@ code {
     monospace;
 }
 .background-image {
-  background-image: url("./Images/fondo.jpg");
+  background-image: url("./assets/backgroundImg.jpg");
   background-size: cover;
 
   height: 100vh; /*Ajusta la altura según sea necesario */
 }
 
-/*AuthContainer*/
-
-@media (max-width: 768px) {
-  .auth-cols {
-    width: 95%;
-  }
+.bluenotebook-jpg {
+  height: 70px;
+  position: absolute;
+  top: 2em;
+  right: 5rem;
+  opacity: 70%;
+  border-radius: 50%;
+  object-fit: cover;
 }
+
+/*AuthContainer*/
 
 .loginLabelTxt {
   text-align: start;
@@ -59,15 +63,6 @@ code {
 
 .blue-custom-color {
   background-color: rgb(13, 110, 253);
-}
-
-
-.grey-color {
-  background-color: rgb(217, 217, 217);
-}
-
-.h-columns {
-  height: 100vh;
 }
 
 .custom-checkbox {
@@ -89,11 +84,18 @@ code {
   word-wrap: break-word;
 }
 
-@media (max-width: 575.98px) {
+.pointer {
+  cursor: pointer;
+}
 
-  .h-columns {
-    height: auto !important;
-    padding: 10px 0;
+.main-view {
+  height: 100vh;
+}
+/* Responsive style*/
+
+@media (max-width: 767px) {
+  .auth-cols {
+    width: 95%;
   }
   .boxx {
     height: 15rem;
@@ -102,8 +104,44 @@ code {
   .hide-colum {
     content-visibility: hidden;
   }
+  .watch-notes-sidebar {
+    max-height: 180px;
+    overflow-y: auto;
+  }
+  /* Style for the text editor */
+  .text-editor .ql-container {
+    max-height: 276px;
+    overflow: hidden;
+    overflow-y: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+  }
+
+  .text-editor .ql-editor {
+    max-height: 263px;
+    overflow-y: auto;
+  }
+  .bluenotebook-jpg {
+    visibility: hidden;
+  }
 }
 
-.pointer {
-  cursor: pointer;
+@media (min-width: 767px) {
+  .watch-notes-sidebar {
+    max-height: 613px;
+    overflow-y: auto;
+  }
+  /* Style for the text editor */
+  .text-editor .ql-container {
+    max-height: 520px;
+    overflow: hidden;
+    overflow-y: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+  }
+
+  .text-editor .ql-editor {
+    max-height: 523px;
+    overflow-y: auto;
+  }
 }
