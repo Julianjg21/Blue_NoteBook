@@ -4,7 +4,6 @@ import FetchGetTasks from "../../../hooks/apis/tasksFetch/FetchGetTasks.mjs";
 import WatchTasksModal from "../../../common/modals/tasks/WatchTasksModal"; // Modal para visualizar tareas
 
 function AddTasks() {
-
   const { tasksList, refreshTasks } = FetchGetTasks();
 
   //State to store the data of the selected task
@@ -18,8 +17,6 @@ function AddTasks() {
 
   //State that controls whether the task view modal is visible
   const [showTaskModal, setShowTaskModal] = useState(false);
-
-
 
   //Function to activate the new task creation modal
   const handleShowNewTaskModal = () => setShowNewTaskModal(true);
@@ -38,7 +35,7 @@ function AddTasks() {
   //useEffect to bring in the task list when the component is mounted or updated
   useEffect(() => {
     refreshTasks();
-  }, [ refreshTasks]); //UseEffect dependency: updates when tasksList changes
+  }, [refreshTasks]); //UseEffect dependency: updates when tasksList changes
 
   //Filter the list of tasks based on the search performed
   const filteredTasks = tasksList.filter((task) =>
@@ -46,21 +43,21 @@ function AddTasks() {
   );
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid ">
       <div className="container">
-        <div className="row mt-4 border-bottom border-2">
+        <div className="row  border-bottom border-2">
           <div className="col-12 mb-3">
-            <div className="row">
+            <div className="row mt-4">
               <div className="col-6">
                 <h1 className="fs-4">Tasks</h1>
               </div>
               <div className="col-6">
                 <div className="row">
-                  <div className="col-6">
+                  <div className="col-6 bg-light">
                     {/*Button to add a new task */}
                     <button
                       title="New Task"
-                      className="float-end border-0 mt-1 text-primary fw-semibold grey-color"
+                      className="float-end border-0 mt-1 text-primary fw-semibold  bg-light "
                       onClick={handleShowNewTaskModal}
                     >
                       + Nueva Tarea
