@@ -35,8 +35,10 @@ const __dirname = path.dirname(__filename);
 //Configure the path to the 'public' folder on the client
 const publicPath = path.join(__dirname, "client/build");
 
+
 //Middleware to serve static files from the 'public' directory
 app.use(express.static(publicPath));
+
 
 //Application routes
 app.use("/auth", LoginRoute); //Path for login
@@ -44,6 +46,11 @@ app.use("/createUser", RegisterRoute); //Path for user registration
 app.use("/manageNotes", NotesRoute); //Route to manage notes
 app.use("/manageTasks", TasksRoute); //Route to manage tasks
 app.use("/resetPassword", ResetPassword); //Route to manage tasks
+
+//redirect all the routes to index.html
+app.get("*", (req, res) => {
+  res.sendFile(path.join(publicPath, "index.html"));
+});
 
 //Database connection management
 db.on("error", (err) => {
