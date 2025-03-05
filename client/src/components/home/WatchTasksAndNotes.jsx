@@ -79,15 +79,14 @@ function WatchTasksAndNotes() {
   return (
     <div className="container-fluid ">
       <div className="container ">
-        <div className="row " >
-          <div className="col-12" >
+        <div className="row ">
+          <div className="col-12">
             <Tabs
               defaultActiveKey="profile"
               id="uncontrolled-tab-example"
               className="mb-3  border border-0"
-
             >
-              <Tab eventKey="home" title="Notes" className="" >
+              <Tab eventKey="home" title="Notes" className="">
                 <CustomAlert
                   title={alert.title} //Pass the title
                   message={alert.message}
@@ -100,7 +99,7 @@ function WatchTasksAndNotes() {
                   <div className="col-12 ">
                     <div className="container">
                       <div className="row ">
-                        {getNotes.length > 0 ? (
+                        {getNotes?.length > 0 ? (
                           getNotes.map((note, index) => (
                             <React.Fragment key={index}>
                               <div
@@ -174,7 +173,7 @@ function WatchTasksAndNotes() {
                 </div>
 
                 <div className="row">
-                  {tasksList.length > 0 ? (
+                  {tasksList?.length > 0 ? (
                     tasksList.map((task, index) => (
                       <React.Fragment key={index}>
                         <div className="col-12">

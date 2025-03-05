@@ -19,13 +19,15 @@ const FetchGetTasks = () => {
       });
 
       //Format the dates of each task before setting the state
-      const tasksWithFormattedDate = getData.data.tasks.map((task) => ({
-        ...task,
-        due_date: new Date(task.due_date).toISOString().split("T")[0], //Format the due date
-        created_at: new Date(task.created_at).toISOString().split("T")[0], //Format the creation date
-      }));
+      if (getData.data.tasks && Array.isArray(getData.data.tasks)) {
+        const tasksWithFormattedDate = getData.data.tasks.map((task) => ({
+          ...task,
+          due_date: new Date(task.due_date).toISOString().split("T")[0],
+          created_at: new Date(task.created_at).toISOString().split("T")[0],
+        }));
 
-      setTasksList(tasksWithFormattedDate); //Update tasks list state
+        setTasksList(tasksWithFormattedDate);
+      }
     } catch (error) {
       setError(error.response ? error.response.data : error.message); //Save error
       console.error(

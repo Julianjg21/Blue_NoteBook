@@ -74,7 +74,7 @@ function WatchNotes() {
             Nueva Nota
           </Button>
           <div className="">
-            {getNotes.length > 0 ? (
+            {getNotes?.length > 0 ? (
               getNotes.map((note) => (
                 <div key={note.id} className="list-group">
                   <button
