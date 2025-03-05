@@ -14,6 +14,8 @@ function WatchTasksAndNotes() {
   const { getNotes, refreshNotes } = FetchGetNotes(); //We use the hook to obtain the notes
   const { alert, deleteNote, handleCloseAlert } = FetchDeleteNotes(); //We use the hook to obtain the tasks
   const { tasksList, refreshTasks } = FetchGetTasks();
+  //If the count changes, the list of notes and tasks will be updated.
+  const [updateNotesAndTasks, setUpdateNotesAndTasks] = useState(0);
   // State to control the visibility of the note modal
   const [showNote, setShowNote] = useState(false);
   // States to hold note title, description, and ID for editing/deleting
@@ -35,7 +37,10 @@ function WatchTasksAndNotes() {
   };
 
   // Function to close the task modal
-  const handleCloseShowTaskModal = () => setShowTaskModal(false);
+  const handleCloseShowTaskModal = () => {
+    setUpdateNotesAndTasks((prev) => prev + 1); //update the list of notes and tasks
+    setShowTaskModal(false);
+  }
 
   const { dispatch } = useContext(AppContextState); // Get dispatch function from context
 
@@ -47,13 +52,16 @@ function WatchTasksAndNotes() {
     setShowNote(true);
   };
 
-  const handleShowNoteClose = () => setShowNote(false);
+  const handleShowNoteClose = () => {
+    setUpdateNotesAndTasks((prev) => prev + 1); //update the list of notes and tasks
+    setShowNote(false);
+  }
 
   // Fetch notes from the server when the component mounts
   useEffect(() => {
     refreshNotes();
     refreshTasks();
-  }, [refreshTasks, refreshNotes]); // Dependency array to re-fetch notes when they change
+  }, [updateNotesAndTasks]); // Dependency array to re-fetch notes when they change
 
   // Function to handle note editing
   const handleEditeNote = () => {
@@ -74,6 +82,7 @@ function WatchTasksAndNotes() {
   const handleDeleteNote = async () => {
     await deleteNote(id);
     handleShowNoteClose(); // Close note modal after deletion
+    setUpdateNotesAndTasks((prev) => prev + 1); //update the list of notes and tasks
   };
 
   return (

@@ -9,6 +9,9 @@ import CustomAlert from "../../../common/Alerts/CustomAlert";
 import FetchGetNotes from "../../../hooks/apis/notesFetch/FetchGetNotes.mjs";
 import FetchUpdateNotes from "../../../hooks/apis/notesFetch/FetchUpdateNotes.mjs";
 function WatchNotes() {
+  //If the count changes, the list of notes will be updated.
+  const [updateNotes, setUpdateNotes] = useState(0);
+
   const { getNotes, refreshNotes } = FetchGetNotes(); // We use the hook
   const { alert, updateNote, handleCloseAlert } = FetchUpdateNotes(); // We use the hook
 
@@ -28,7 +31,7 @@ function WatchNotes() {
   // Fetch notes from the server when the component mounts
   useEffect(() => {
     refreshNotes();
-  }, [refreshNotes]); // Dependency array to re-fetch notes when they change
+  }, [updateNotes]); // Dependency array to re-fetch notes when they change
 
   // Handle editing a note from the home page
   useEffect(() => {
@@ -48,6 +51,8 @@ function WatchNotes() {
     }
   }, [state.editNoteState, dispatch]);
 
+  const updateList = () =>    setUpdateNotes(prev => prev + 1); //update the list of notes
+
   // Function to display a selected note for editing
   const handleShowNote = useCallback((note) => {
     setNoteData(note);
@@ -58,6 +63,7 @@ function WatchNotes() {
     const data = noteData;
     e.preventDefault();
     await updateNote(noteData.id, data);
+    updateList();// update de list of notes
   };
 
   return (
@@ -98,7 +104,7 @@ function WatchNotes() {
 
         <div className="col-12 col-md-10  bg-light h-100 p-4 p-md-4">
           {showSaveData ? (
-            <TextEdit />
+            <TextEdit updateList={updateList} />
           ) : (
             <div className="text-editor ">
               {/*Customize alert according to the data sent by the server*/}
