@@ -4,7 +4,7 @@ import "react-quill/dist/quill.snow.css"; //Quill Styles
 import Cookies from "js-cookie"; // Para manejar cookies
 import CustomAlert from "../Alerts/CustomAlert"; // Componente de alerta personalizada
 import FetchAddNotes from "../../hooks/apis/notesFetch/FetchAddNotes.mjs";
-function TextEdit() {
+function TextEdit({ updateList }) {
   const { alert, addNote, handleCloseAlert } = FetchAddNotes(); // We use the hook
   //State to store the note title and description
   const [description, setDescription] = useState("");
@@ -19,6 +19,10 @@ function TextEdit() {
     setTitle("");
     setDescription("");
     await addNote(data);
+    //Update list of notes
+    if (updateList && typeof updateList === "function") {
+      updateList();
+    }
   };
 
   return (
