@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm install --prefix client && npm run build --prefix client", 
     "dev": "nodemon Server.mjs",
     "start": "node Server.mjs",
     "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
