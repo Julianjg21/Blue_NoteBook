@@ -31,6 +31,7 @@ function WatchNotes() {
   // Fetch notes from the server when the component mounts
   useEffect(() => {
     refreshNotes();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updateNotes]); // Dependency array to re-fetch notes when they change
 
   // Handle editing a note from the home page

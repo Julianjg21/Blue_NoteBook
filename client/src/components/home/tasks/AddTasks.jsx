@@ -43,6 +43,7 @@ function AddTasks() {
   //useEffect to bring in the task list when the component is mounted or updated
   useEffect(() => {
     refreshTasks();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updateTasks]); //UseEffect dependency: updates when tasksList changes
 
   //Filter the list of tasks based on the search performed

@@ -61,6 +61,7 @@ function WatchTasksAndNotes() {
   useEffect(() => {
     refreshNotes();
     refreshTasks();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updateNotesAndTasks]); // Dependency array to re-fetch notes when they change
 
   // Function to handle note editing
