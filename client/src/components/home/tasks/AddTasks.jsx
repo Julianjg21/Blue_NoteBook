@@ -12,6 +12,9 @@ function AddTasks() {
   //State to store the text written in the search engine
   const [searchQuery, setSearchQuery] = useState("");
 
+    //If the count changes, the list of tasks and tasks will be updated.
+  const [updateTasks, setUpdateTasks] = useState(0);
+
   //State that controls whether the create new task modal is visible
   const [showNewTaskModal, setShowNewTaskModal] = useState(false);
 
@@ -22,20 +25,25 @@ function AddTasks() {
   const handleShowNewTaskModal = () => setShowNewTaskModal(true);
 
   //Function to disable the new task creation modal
-  const handleCloseNewTaskModal = () => setShowNewTaskModal(false);
-
+  const handleCloseNewTaskModal = () => {
+    setUpdateTasks((prev) => prev + 1); //update the list of tasks
+    setShowNewTaskModal(false);
+}
   //Function to activate the task view modal with the data of a selected task
   const handleShowTaskModal = (task) => {
     setTaskData(task); //Save the data of the selected task
     setShowTaskModal(true); //Show the modal
   };
   //Function to disable the task view modal
-  const handleCloseShowTaskModal = () => setShowTaskModal(false);
+  const handleCloseShowTaskModal = () => {
+    setUpdateTasks((prev) => prev + 1);//update the list of tasks
+    setShowTaskModal(false);
+  }
 
   //useEffect to bring in the task list when the component is mounted or updated
   useEffect(() => {
     refreshTasks();
-  }, [refreshTasks]); //UseEffect dependency: updates when tasksList changes
+  }, [updateTasks]); //UseEffect dependency: updates when tasksList changes
 
   //Filter the list of tasks based on the search performed
   const filteredTasks = tasksList.filter((task) =>
