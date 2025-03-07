@@ -7,9 +7,6 @@
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@primer/octicons-react": "^19.11.0",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.5",
     "bootstrap": "^5.3.3",
     "cdbreact": "^1.5.19",
@@ -24,9 +21,14 @@
     "react-draft-wysiwyg": "^1.15.0",
     "react-quill": "^2.0.0",
     "react-router-dom": "^6.26.0",
-    "react-scripts": "5.0.1",
-    "server": "file:..",
     "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react-scripts": "5.0.1",
+    "server": "file:.."
   },
   "scripts": {
     "start": "react-scripts start",

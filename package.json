@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm install --prefix client && npm run build --prefix client", 
+    "build": "npm install --prefix client && npm run build --prefix client",
     "dev": "nodemon Server.mjs",
     "start": "node Server.mjs",
     "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
@@ -22,7 +22,9 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.11.0",
-    "nodemailer": "^6.9.15",
+    "nodemailer": "^6.9.15"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.4"
   }
 }
