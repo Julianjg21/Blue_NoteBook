@@ -1,4 +1,5 @@
 import express from "express";
+import helmet from "helmet";
 import { fileURLToPath } from "url";
 import path from "path";
 import dotenv from "dotenv";
@@ -12,11 +13,14 @@ import TasksRoute from "./routes/ManageTasksRoute.mjs";
 import ResetPassword from "./routes/ResetPasswordRoute.mjs";
 //Load environment variables from .env file
 dotenv.config({ path: "/configs.env" });
-dotenv.config();
+
 
 //Initialize the Express application
 const app = express();
 const PORT = process.env.PORT || 3080; //Use port from environment variables or default port 3080
+
+//Helmet to improve security
+app.use(helmet());
 
 //Configure CORS to allow requests from other domains
 app.use(cors());
