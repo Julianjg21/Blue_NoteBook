@@ -53,7 +53,8 @@ function AddTasks() {
 
   return (
     <div className="container-fluid ">
-      <div className="container">
+      <div className="container overflow-auto"
+                style={{ maxHeight: "100vh" }}>
         <div className="row  border-bottom border-2">
           <div className="col-12 mb-3">
             <div className="row mt-4">

@@ -40,7 +40,7 @@ function WatchTasksAndNotes() {
   const handleCloseShowTaskModal = () => {
     setUpdateNotesAndTasks((prev) => prev + 1); //update the list of notes and tasks
     setShowTaskModal(false);
-  }
+  };
 
   const { dispatch } = useContext(AppContextState); // Get dispatch function from context
 
@@ -55,13 +55,13 @@ function WatchTasksAndNotes() {
   const handleShowNoteClose = () => {
     setUpdateNotesAndTasks((prev) => prev + 1); //update the list of notes and tasks
     setShowNote(false);
-  }
+  };
 
   // Fetch notes from the server when the component mounts
   useEffect(() => {
     refreshNotes();
     refreshTasks();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [updateNotesAndTasks]); // Dependency array to re-fetch notes when they change
 
   // Function to handle note editing
@@ -96,7 +96,12 @@ function WatchTasksAndNotes() {
               id="uncontrolled-tab-example"
               className="mb-3  border border-0"
             >
-              <Tab eventKey="home" title="Notes" className="">
+              <Tab
+                eventKey="home"
+                title="Notes"
+                className="overflow-auto container"
+                style={{ maxHeight: "90vh" }}
+              >
                 <CustomAlert
                   title={alert.title} //Pass the title
                   message={alert.message}
@@ -104,61 +109,66 @@ function WatchTasksAndNotes() {
                   show={alert.show}
                   onClose={handleCloseAlert}
                 />
-                <h2>Notes</h2>
+                <h2 className="">Notes</h2>
                 <div className="row ">
                   <div className="col-12 ">
-                    <div className="container">
-                      <div className="row ">
-                        {getNotes?.length > 0 ? (
-                          getNotes.map((note, index) => (
-                            <React.Fragment key={index}>
-                              <div
-                                className="col-4 col-sm-2 shadow pointer mt-2 boxx bg-light rounded bg-danger"
-                                onClick={() => handleShowNote(note)}
-                              >
-                                <div className="row">
-                                  <div className="col-12">
-                                    <p className="text-center fw-semibold fs-6">
-                                      {note.title}
-                                    </p>
-                                  </div>
-                                </div>
-                                <div className="row">
-                                  <div className="col-12">
-                                    <div
-                                      className="note-description"
-                                      dangerouslySetInnerHTML={{
-                                        __html: DOMPurify.sanitize(
-                                          note.description
-                                        ),
-                                      }}
-                                    ></div>
-                                  </div>
+                    <div className="row ">
+                      {getNotes?.length > 0 ? (
+                        getNotes.map((note, index) => (
+                          <React.Fragment key={index}>
+                            <div
+                              className="col-5 col-sm-2 shadow pointer mt-2 boxx bg-light rounded bg-danger p-2"
+                              onClick={() => handleShowNote(note)}
+                            >
+                              <div className="row align-content-center justify-content-center">
+                                <div className="col-10">
+                                  <p className="text-center fw-semibold fs-6 text">
+                                    {note.title}
+                                  </p>
                                 </div>
                               </div>
-                              <div className="col-1 border-0 align-content-center hide-colum">
-                                <p className="text-center">Nota {index + 1} </p>
+                              <div className="row align-content-center justify-content-center">
+                                <div className="col-10">
+                                  <div
+                                    className="note-description  text-center"
+                                    dangerouslySetInnerHTML={{
+                                      __html: DOMPurify.sanitize(
+                                        note.description
+                                      ),
+                                    }}
+                                  ></div>
+                                </div>
                               </div>
-                            </React.Fragment>
-                          ))
-                        ) : (
-                          <p>No hay notas disponibles.</p>
-                        )}
-                      </div>
+                            </div>
+                            <div className="col-1 col-md-0 border-0 align-content-center hide-colum">
+                              <p className="text-center text-secondary">
+                                Nota {index + 1}{" "}
+                              </p>
+                            </div>
+                          </React.Fragment>
+                        ))
+                      ) : (
+                        <p>No hay notas disponibles.</p>
+                      )}
                     </div>
                   </div>
                 </div>
               </Tab>
 
-              <Tab eventKey="profile" title="Tasks" className="">
+              <Tab
+                eventKey="profile"
+                title="Tasks"
+                className="overflow-auto  p-lg-3"
+                style={{ maxHeight: "90vh" }}
+              >
                 <WatchTasksModal
                   stateShowTaskModal={showTaskModal}
                   handleCloseShowTaskModal={handleCloseShowTaskModal}
                   taskData={taskData}
                 />
 
-                <div className="row mt-3 border-bottom border-2 ">
-                  <div className="col-12">
+                <div className="row border-bottom border-2   align-content-center justify-content-center">
+                  <div className="col-11">
                     <div className="row">
                       <div className="col-2">
                         <p className=" fw-semibold">Estado</p>
@@ -182,11 +192,11 @@ function WatchTasksAndNotes() {
                   </div>
                 </div>
 
-                <div className="row">
+                <div className="row  align-content-center justify-content-center">
                   {tasksList?.length > 0 ? (
                     tasksList.map((task, index) => (
                       <React.Fragment key={index}>
-                        <div className="col-12">
+                        <div className="col-11   ">
                           <div
                             className="row mt-3 border border-1 pointer shadow rounded-5 border-success bg-light"
                             onClick={() => handleShowTaskModal(task)}
@@ -249,7 +259,7 @@ function WatchTasksAndNotes() {
                         <div className="row  ">
                           <div className="col-12">
                             <div className="row ">
-                              <div className="col-12 text-center mb-3">
+                              <div className="col-12 text-center">
                                 <p className=" fw-semibold  text-secondary">
                                   Titulo:
                                 </p>
